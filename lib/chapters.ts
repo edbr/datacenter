@@ -110,7 +110,7 @@ export const chapters: Chapter[] = [
       "Cooling design creates a tradeoff. A system can reduce electricity use by consuming more water, or conserve water while requiring more power. Climate and local scarcity change what responsible design looks like.",
     insight:
       "A liter saved at the facility can shift demand back to the grid. Efficiency is a system, not a single number.",
-    visual: "water energy",
+    visual: "water",
   },
 
   // ------------------------------------------------------------------------
