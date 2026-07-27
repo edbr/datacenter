@@ -13,6 +13,8 @@
  * - `insight` appears in the highlighted Key Insight callout.
  * - `visual` selects the visualization defined in components/visuals.tsx.
  * - `embedUrl` is optional and currently powers the Chapter 2 iframe.
+ * - `figures` adds editable image placeholders or finished figures to a chapter.
+ *   Add `src: "/figures/example.png"` when the final image is available.
  *
  * Reordering objects in the `chapters` array changes the reading order.
  */
@@ -37,6 +39,14 @@ export type Chapter = {
   insight: string;
   visual: ChapterVisual;
   embedUrl?: string;
+  figures?: ChapterFigure[];
+};
+
+export type ChapterFigure = {
+  title: string;
+  caption: string;
+  src?: string;
+  alt?: string;
 };
 
 export const chapters: Chapter[] = [
@@ -56,6 +66,20 @@ export const chapters: Chapter[] = [
     insight:
       "The digital economy is becoming more physical at the exact moment it appears most invisible.",
     visual: "growth",
+    figures: [
+      {
+        title: "AI demand timeline",
+        caption: "A timeline showing the milestones that accelerated AI infrastructure demand.",
+      },
+      {
+        title: "Growth of cloud computing",
+        caption: "A figure tracing the expansion of cloud capacity over time.",
+      },
+      {
+        title: "One impressive statistic",
+        caption: "A headline number that communicates the scale of data-center growth.",
+      },
+    ],
   },
 
   // ------------------------------------------------------------------------
@@ -75,6 +99,18 @@ export const chapters: Chapter[] = [
       "Location determines which grid supplies the power, which watershed absorbs the demand, and which community carries the tradeoffs.",
     visual: "map",
     embedUrl: "https://data-center-map-world.vercel.app/",
+    figures: [
+      {
+        title: "Facilities by country",
+        caption:
+          "A country-level comparison showing where data-center facilities are concentrated.",
+      },
+      {
+        title: "Capacity by region",
+        caption:
+          "A regional comparison of installed and planned data-center capacity.",
+      },
+    ],
   },
 
   // ------------------------------------------------------------------------
@@ -93,6 +129,23 @@ export const chapters: Chapter[] = [
     insight:
       "Capacity is only useful when dependable electricity can reach it—every hour of every day.",
     visual: "energy",
+    figures: [
+      {
+        title: "Capacity vs. electricity",
+        caption:
+          "A comparison of data-center capacity and the electricity required to support it.",
+      },
+      {
+        title: "Distribution of electricity usage",
+        caption:
+          "A breakdown showing how electricity consumption is distributed across facilities.",
+      },
+      {
+        title: "Country comparisons",
+        caption:
+          "A country-level comparison of data-center electricity demand.",
+      },
+    ],
   },
 
   // ------------------------------------------------------------------------
@@ -111,6 +164,23 @@ export const chapters: Chapter[] = [
     insight:
       "A liter saved at the facility can shift demand back to the grid. Efficiency is a system, not a single number.",
     visual: "water",
+    figures: [
+      {
+        title: "Water consumption",
+        caption:
+          "A comparison of water consumed by data-center facilities and regions.",
+      },
+      {
+        title: "Water usage effectiveness (WUE)",
+        caption:
+          "A comparison of water usage effectiveness across facilities and operating conditions.",
+      },
+      {
+        title: "Cooling types",
+        caption:
+          "A breakdown of cooling technologies and their water and energy tradeoffs.",
+      },
+    ],
   },
 
   // ------------------------------------------------------------------------
@@ -129,6 +199,23 @@ export const chapters: Chapter[] = [
     insight:
       "The question is not simply how much renewable energy exists, but whether clean supply grows where demand grows.",
     visual: "renewables",
+    figures: [
+      {
+        title: "Renewable generation vs. data-center concentration",
+        caption:
+          "A comparison of renewable electricity generation and the geographic concentration of data centers.",
+      },
+      {
+        title: "Electricity generation by source",
+        caption:
+          "A breakdown of electricity supplied by wind, solar, natural gas, and coal.",
+      },
+      {
+        title: "Regional energy mix",
+        caption:
+          "A regional view showing where wind, solar, natural gas, and coal shape the electricity mix.",
+      },
+    ],
   },
 
   // ------------------------------------------------------------------------
@@ -147,6 +234,58 @@ export const chapters: Chapter[] = [
     insight:
       "Data centers are neither inherently sustainable nor unsustainable. Their impact depends on the systems built around them.",
     visual: "tradeoffs",
+    figures: [
+      {
+        title: "Opportunity vs. risk quadrant",
+        caption:
+          "Signature scatterplot where each point represents a country or state. Plot renewable electricity share (%) on the x-axis and data-center capacity (MW) or facility count on the y-axis. Scale each point by total electricity consumption and color it by water-stress tier.",
+      },
+      {
+        title: "Tradeoff bubble chart",
+        caption:
+          "Plot daily electricity usage on the x-axis and daily water usage on the y-axis. Size each bubble by facility capacity (MW) and color it by cooling system to reveal environmental tradeoffs among facilities.",
+      },
+      {
+        title: "Country opportunity score",
+        caption:
+          "Create a composite index weighted by renewable share (40%), water availability (25%), existing infrastructure (20%), and grid capacity (15%). Rank countries such as Norway, Canada, Sweden, Spain, the USA, and India in a horizontal bar chart for policy discussion.",
+      },
+      {
+        title: "Country profile radar charts",
+        caption:
+          "Select four countries and normalize renewables, water availability, data-center capacity, and electricity metrics from 0–100. Draw one polygon per country to make contrasting infrastructure profiles immediately visible.",
+      },
+      {
+        title: "Infrastructure flow Sankey",
+        caption:
+          "Show how infrastructure choices connect through a flow such as country → cooling type → electricity demand → water stress, or energy source → generation → data centers → cooling technology.",
+      },
+      {
+        title: "Country comparison heatmap",
+        caption:
+          "Use countries as rows and renewable share, water, electricity, capacity, PUE, and WUE as columns. Normalize the values and use color intensity to make strengths, constraints, and outliers easy to compare.",
+      },
+      {
+        title: "Country small multiples",
+        caption:
+          "Create a separate scatterplot for Spain, India, the USA, and Norway using identical axes, domains, and visual encodings. The repeated scale makes differences in distribution and country-level patterns easy to identify without relying on one crowded chart.",
+      },
+      {
+        title: "Four-quadrant efficiency plot",
+        caption:
+          "Plot electricity use on the x-axis and water use on the y-axis, with each point representing a facility or country. Divide the chart into Sustainable Leaders, Water Intensive, Energy Intensive, and Resource Intensive quadrants to directly communicate operational tradeoffs.",
+      },
+      {
+        title: "Before and after renewable mix",
+        caption:
+          "Use a stacked area chart from approximately 2015–2025 to show how coal, natural gas, solar, wind, and hydro changed over time. Overlay data-center growth to examine whether cleaner generation expanded alongside new infrastructure demand.",
+      },
+      {
+        title: "The infrastructure balance",
+        caption:
+          "Build a conceptual balance between benefits—renewable investment, economic growth, jobs, and AI innovation—and costs—water demand, grid congestion, peak load, and carbon emissions. Pair every item with an icon and one supporting statistic from the analysis.",
+      },
+    ],
   },
 
   // ------------------------------------------------------------------------
@@ -165,6 +304,18 @@ export const chapters: Chapter[] = [
     insight:
       "AI is often viewed as a software revolution. Our findings suggest it is equally an infrastructure revolution.",
     visual: "future",
+    figures: [
+      {
+        title: "AI growth vs. grid readiness",
+        caption:
+          "Use two conceptual growth lines to compare AI compute demand with energy-infrastructure expansion. This is not a forecast; it frames the risk that compute demand may outpace generation, transmission, and cooling investment. Supporting message: Meeting future AI demand will require parallel investment in generation, transmission, and cooling technologies.",
+      },
+      {
+        title: "Resource intensity by cooling technology",
+        caption:
+          "Create a roadmap comparing air cooling (medium electricity efficiency, low water use, medium AI readiness), evaporative cooling (high efficiency, high water use, medium readiness), and liquid cooling (highest efficiency, low-to-medium water use depending on implementation, and highest AI readiness).",
+      },
+    ],
   },
 ];
 
