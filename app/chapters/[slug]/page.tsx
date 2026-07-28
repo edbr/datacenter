@@ -1,10 +1,9 @@
-import Link from "next/link";
+/* eslint-disable @next/next/no-html-link-for-pages */
+
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
 import { ChapterFigures } from "@/components/chapter-figures";
-import { Reveal } from "@/components/reveal";
-import { SiteHeader } from "@/components/site-header";
 import { ChapterVisual } from "@/components/visuals";
 import { Chapter, chapters, getChapter } from "@/lib/chapters";
 
@@ -35,25 +34,21 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
 
   return (
     <main>
-      <SiteHeader />
-
       <article className="chapter">
         {/* Chapter title and introduction */}
         <header className="chapter-hero">
-          <Reveal>
+        
             <p className="kicker">
               Chapter {chapter.number}
               <span> — {chapter.eyebrow}</span>
             </p>
-          </Reveal>
+   
 
-          <Reveal delay={0.08}>
             <h1>{chapter.title}</h1>
-          </Reveal>
 
-          <Reveal className="chapter-deck" delay={0.16}>
+          <div className="chapter-deck">
             <p>{chapter.intro}</p>
-          </Reveal>
+          </div>
         </header>
 
         {/* Main finding, key insight, and chapter visualization */}
@@ -92,36 +87,36 @@ function ChapterNavigation({ previous, next }: ChapterNavigationProps) {
   return (
     <footer className="chapter-nav">
       {previous ? (
-        <Link href={`/chapters/${previous.slug}`}>
+        <a href={`/chapters/${previous.slug}`}>
           <ArrowLeft />
           <span>
             Previous
             <br />
             <b>{previous.short}</b>
           </span>
-        </Link>
+        </a>
       ) : (
         <span />
       )}
 
       {next ? (
-        <Link href={`/chapters/${next.slug}`}>
+        <a href={`/chapters/${next.slug}`}>
           <span>
             Next chapter
             <br />
             <b>{next.short}</b>
           </span>
           <ArrowRight />
-        </Link>
+        </a>
       ) : (
-        <Link href="/">
+        <a href="/">
           <span>
             Return
             <br />
             <b>Home</b>
           </span>
           <ArrowRight />
-        </Link>
+        </a>
       )}
     </footer>
   );

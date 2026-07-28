@@ -1,8 +1,10 @@
-"use client";
+import type { ReactNode } from "react";
 
-import { motion } from "framer-motion";
-import { ReactNode } from "react";
+type RevealProps = {
+  children: ReactNode;
+  className?: string;
+};
 
-export function Reveal({ children, delay = 0, className }: { children: ReactNode; delay?: number; className?: string }) {
-  return <motion.div className={className} initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .8, delay, ease: [.22, 1, .36, 1] }}>{children}</motion.div>;
+export function Reveal({ children, className }: RevealProps) {
+  return <div className={className}>{children}</div>;
 }

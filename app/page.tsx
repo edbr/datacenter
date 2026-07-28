@@ -1,10 +1,8 @@
-import Link from "next/link";
 import Image from "next/image";
 import { ArrowDownRight, ArrowRight } from "lucide-react";
 import type { CSSProperties } from "react";
 
 import { Reveal } from "@/components/reveal";
-import { SiteHeader } from "@/components/site-header";
 import { Button } from "@/components/ui/button";
 import { chapters } from "@/lib/chapters";
 
@@ -20,8 +18,6 @@ const projectTeam = [
 export default function Home() {
   return (
     <main>
-      <SiteHeader />
-
       <section className="hero">
         <HeroBackground />
 
@@ -31,7 +27,7 @@ export default function Home() {
           </p>
         </Reveal>
 
-        <Reveal delay={0.1}>
+        <Reveal>
           <h1>
             The Hidden Cost
             <br />
@@ -42,18 +38,18 @@ export default function Home() {
         </Reveal>
 
         <div className="hero-bottom">
-          <Reveal delay={0.2}>
+          <Reveal>
             <p>
               Every prompt, search, and model response relies on physical
               infrastructure that consumes electricity, water, and land.
             </p>
           </Reveal>
 
-          <Reveal delay={0.3}>
+          <Reveal>
             <Button asChild size="lg">
-              <Link href={firstChapterUrl}>
+              <a href={firstChapterUrl}>
                 Begin the journey <ArrowRight size={18} />
-              </Link>
+              </a>
             </Button>
           </Reveal>
         </div>
@@ -82,9 +78,9 @@ export default function Home() {
             reshaping energy systems, and what it means for our planet.
           </p>
 
-          <Link href={firstChapterUrl}>
+          <a href={firstChapterUrl}>
             Enter chapter one <ArrowRight size={16} />
-          </Link>
+          </a>
         </div>
       </section>
 
