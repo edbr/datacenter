@@ -62,7 +62,7 @@ export const chapters: Chapter[] = [
     intro:
       "A data center is a building where computation becomes infrastructure: racks of processors, electrical substations, cooling loops, backup generators, and dense webs of fiber.",
     body:
-      "Cloud computing made these facilities essential. Generative AI is accelerating the shift. Training and serving larger models requires specialized chips operating continuously—and every operation produces heat that must be removed.",
+      "Cloud computing made these facilities essential. Generative AI is accelerating the shift. As AI hardware becomes more powerful, operators are increasing rack density—packing more computing power into the same physical footprint—to maximize performance and efficiency.",
     insight:
       "The digital economy is becoming more physical at the exact moment it appears most invisible.",
     visual: "growth",
@@ -103,7 +103,8 @@ export const chapters: Chapter[] = [
       {
         title: "Facilities by country",
         caption:
-          "A country-level comparison showing where data-center facilities are concentrated.",
+          "United States has the largest concentration of data-center capacity: 5,122.",
+        src: "/facilitiesbyCountry.png",
       },
       {
         title: "Capacity by region",
@@ -193,7 +194,7 @@ export const chapters: Chapter[] = [
     eyebrow: "Renewable energy",
     title: "Clean power is a race against new demand.",
     intro:
-      "Technology companies are among the largest buyers of renewable electricity. Their contracts can finance new wind and solar projects—but annual procurement does not guarantee clean power every hour.",
+      "Technology companies are among the largest buyers of renewable electricity. Their contracts can finance new wind and solar projects, but annual procurement does not guarantee clean power every hour.",
     body:
       "The deeper comparison is temporal and geographic: does new generation appear on the same grid, at the same time, as data-center consumption? Storage, transmission, and firm clean power shape the answer.",
     insight:
@@ -226,7 +227,7 @@ export const chapters: Chapter[] = [
     number: "06",
     short: "Winners & Tradeoffs",
     eyebrow: "Winners and tradeoffs",
-    title: "Growth creates value—and reallocates cost.",
+    title: "Growth creates value and reallocates cost.",
     intro:
       "Data centers can bring tax revenue, construction, grid investment, and digital infrastructure. They can also compete for electricity, water, land, and public attention.",
     body:

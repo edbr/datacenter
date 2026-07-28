@@ -11,6 +11,7 @@
   --line: rgba(233, 231, 223, 0.16);
   --orange: #ff6b42;
   --blue: #647ad8;
+  --green: #43b97f;
 }
 * {
   box-sizing: border-box;
@@ -228,6 +229,9 @@ a {
   padding: 0 8%;
   background: rgba(11, 12, 11, 0.85);
 }
+
+/* Server activity indicators */
+
 .server-stack b {
   width: 5px;
   height: 5px;
@@ -250,7 +254,7 @@ a {
 }
 
 .server-stack b:nth-child(3) {
-  background: #43b97f;
+  background: var(--green);
   box-shadow: 0 0 8px rgba(67, 185, 127, 0.65);
   animation-delay: calc((var(--server-row) * -0.29s) - 1.4s);
   animation-duration: 1.9s;
