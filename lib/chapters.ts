@@ -1,20 +1,11 @@
 /**
  * STORY CONTENT
  * --------------------------------------------------------------------------
- * Edit chapter titles, narrative copy, and ordering in this file.
+ * Revised narrative:
  *
- * - `slug` becomes the page URL and should normally stay unchanged.
- * - `number` controls the chapter number shown throughout the site.
- * - `short` appears in the chapter index and previous/next navigation.
- * - `eyebrow` is the small label above the main chapter title.
- * - `title` is the large headline.
- * - `intro` appears immediately below the headline.
- * - `body` appears beside the chapter visualization.
- * - `insight` appears in the highlighted Key Insight callout.
- * - `visual` selects the visualization defined in components/visuals.tsx.
- * - `embedUrl` is optional and currently powers the Chapter 2 iframe.
- * - `figures` adds editable image placeholders or finished figures to a chapter.
- *   Add `src: "/figures/example.png"` when the final image is available.
+ * AI growth → data-center concentration → electricity demand →
+ * different grid responses → clean-energy readiness → policy tradeoffs →
+ * future infrastructure choices.
  *
  * Reordering objects in the `chapters` array changes the reading order.
  */
@@ -27,6 +18,15 @@ export type ChapterVisual =
   | "renewables"
   | "tradeoffs"
   | "future";
+
+export type ChapterFigure = {
+  title: string;
+  caption: string;
+  src?: string;
+  alt?: string;
+  /** Display height in pixels. Defaults to 560. */
+  height?: number;
+};
 
 export type Chapter = {
   slug: string;
@@ -42,281 +42,250 @@ export type Chapter = {
   figures?: ChapterFigure[];
 };
 
-export type ChapterFigure = {
-  title: string;
-  caption: string;
-  src?: string;
-  alt?: string;
-};
-
 export const chapters: Chapter[] = [
-  // ------------------------------------------------------------------------
-  // CHAPTER 01 — THE AI BOOM
-  // ------------------------------------------------------------------------
   {
     slug: "why-data-centers-matter",
     number: "01",
-    short: "The AI Boom",
+    short: "The AI Energy Boom",
     eyebrow: "Why data centers matter",
-    title: "Intelligence has a physical address.",
+    title: "AI is becoming an infrastructure challenge.",
     intro:
-      "A data center is a building where computation becomes infrastructure: racks of processors, electrical substations, cooling loops, backup generators, and dense webs of fiber.",
+      "Artificial intelligence may feel virtual, but every model, cloud service, and digital interaction ultimately depends on physical facilities connected to the electric grid.",
     body:
-      "Cloud computing made these facilities essential. Generative AI is accelerating the shift. As AI hardware becomes more powerful, operators are increasing rack density—packing more computing power into the same physical footprint—to maximize performance and efficiency.",
+      "AI workloads require dense clusters of processors operating continuously. As facilities become larger and rack densities increase, data centers are emerging as one of the fastest-growing sources of electricity demand. The question is no longer only how much computing power can be built, but whether electricity infrastructure can expand alongside it.",
     insight:
-      "The digital economy is becoming more physical at the exact moment it appears most invisible.",
+      "AI is not only a software revolution. It is creating a major new source of physical electricity demand.",
     visual: "growth",
-    figures: [
-      {
-        title: "AI demand timeline",
-        caption: "A timeline showing the milestones that accelerated AI infrastructure demand.",
-      },
-      {
-        title: "Growth of cloud computing",
-        caption: "A figure tracing the expansion of cloud capacity over time.",
-      },
-      {
-        title: "One impressive statistic",
-        caption: "A headline number that communicates the scale of data-center growth.",
-      },
-    ],
   },
-
-  // ------------------------------------------------------------------------
-  // CHAPTER 02 — WHERE THEY'RE BUILT
-  // ------------------------------------------------------------------------
   {
     slug: "mapping-data-centers",
     number: "02",
-    short: "Where They’re Built",
-    eyebrow: "Mapping the world’s data centers",
+    short: "Where It Is Built",
+    eyebrow: "Mapping global data centers",
     title: "The cloud is concentrated on the ground.",
     intro:
-      "Data centers are not evenly distributed. Capacity clusters around reliable grids, dense fiber networks, large markets, favorable policy, and access to land and water.",
+      "Data centers are not distributed evenly. Capacity clusters around reliable grids, dense fiber networks, large markets, favorable policy, and access to land and water.",
     body:
-      "A relatively small group of regions hosts a large share of global capacity. These clusters create efficiencies, but they also concentrate pressure on local electricity systems and natural resources.",
+      "A relatively small number of countries and metropolitan regions host a large share of global data-center capacity. These clusters create operational advantages, but they also concentrate electricity demand and infrastructure pressure in the same communities.",
     insight:
-      "Location determines which grid supplies the power, which watershed absorbs the demand, and which community carries the tradeoffs.",
+      "Location determines which grid supplies the power and which community absorbs the infrastructure impact.",
     visual: "map",
     embedUrl: "https://data-center-map-world.vercel.app/",
     figures: [
       {
-        title: "Facilities by country",
+        title: "Data-center capacity expansion by country",
         caption:
-          "United States has the largest concentration of data-center capacity: 5,122.",
-        src: "/facilitiesbyCountry.png",
+          "Explore how estimated data-center capacity has expanded across countries outside the United States.",
+        src: "/charts/data_center_capacity_by_country.html",
+        height: 700,
+        alt: "Interactive chart of data-center capacity expansion by country.",
       },
       {
-        title: "Capacity by region",
+        title: "Top 20 countries by data-center capacity",
         caption:
-          "A regional comparison of installed and planned data-center capacity.",
+          "Focus the global comparison on the 20 largest national data-center markets outside the United States in 2025.",
+        src: "/charts/data_center_capacity_by_country_top20.html",
+        height: 1260,
+        alt: "Interactive chart of the top 20 countries by estimated data-center capacity.",
+      },
+      {
+        title: "Top 10 U.S. data-center markets",
+        caption:
+          "Highlight the concentration of capacity in the ten largest United States city markets.",
+        src: "/charts/data_center_capacity_by_usa_city_top10.html",
+        height: 720,
+        alt: "Interactive chart of data-center capacity in the top 10 United States cities.",
+      },
+      {
+        title: "Top 20 U.S. data-center markets",
+        caption:
+          "Expand the city comparison to show the broader geography of the 20 largest United States markets.",
+        src: "/charts/data_center_capacity_by_usa_city_top20.html",
+        height: 1200,
+        alt: "Interactive chart of data-center capacity in the top 20 United States cities.",
       },
     ],
   },
-
-  // ------------------------------------------------------------------------
-  // CHAPTER 03 — THE ENERGY CHALLENGE
-  // ------------------------------------------------------------------------
   {
     slug: "energy-footprint",
     number: "03",
-    short: "The Energy Challenge",
-    eyebrow: "The energy footprint",
-    title: "Every computation begins at the grid.",
+    short: "The Demand Challenge",
+    eyebrow: "Global electricity demand",
+    title: "The world already needed more electricity. AI accelerates the race.",
     intro:
-      "Servers draw electricity around the clock. So do the systems that cool them, move data, maintain power quality, and stand ready when the grid fails.",
+      "Global electricity consumption has continued to rise as populations, industries, transportation systems, and digital services become more electrified.",
     body:
-      "As facilities become larger and denser, their electrical needs can resemble those of major industrial sites. The key question is no longer whether demand will grow, but where and how quickly grids can respond.",
+      "Data centers add a large, continuous load to an electricity system already under pressure. The challenge is not simply generating more power. New generation, transmission, and grid connections must appear in the same places and on the same timelines as new computing capacity.",
     insight:
-      "Capacity is only useful when dependable electricity can reach it—every hour of every day.",
+      "Electricity demand is global, but grid constraints are local.",
     visual: "energy",
     figures: [
       {
-        title: "Capacity vs. electricity",
+        title: "World electricity generation by fuel",
         caption:
-          "A comparison of data-center capacity and the electricity required to support it.",
+          "Show how total electricity generation has grown and how both renewable and fossil sources continue to contribute.",
+        src: "/charts/world_electricity_generation_by_fuel.png",
+        height: 760,
+        alt: "Stacked area chart of world electricity generation by fuel source.",
       },
       {
-        title: "Distribution of electricity usage",
+        title: "Top electricity-demand countries",
         caption:
-          "A breakdown showing how electricity consumption is distributed across facilities.",
+          "Compare the countries with the largest electricity systems and their current renewable shares.",
+        src: "/charts/top_20_countries_by_electricity_demand.png",
+        height: 700,
+        alt: "Bar chart comparing national electricity demand and renewable electricity shares.",
       },
       {
-        title: "Country comparisons",
+        title: "Capacity versus electricity use",
         caption:
-          "A country-level comparison of data-center electricity demand.",
+          "Connect estimated data-center capacity with the electricity required to operate it.",
+        src: "/charts/capacity-vs-electricity.html",
+        alt: "Interactive chart comparing data-center capacity with electricity consumption.",
       },
     ],
   },
-
-  // ------------------------------------------------------------------------
-  // CHAPTER 04 — THE WATER CHALLENGE
-  // ------------------------------------------------------------------------
   {
-    slug: "water-hidden-resource",
+    slug: "regional-grid-readiness",
     number: "04",
-    short: "The Water Challenge",
-    eyebrow: "Water: the hidden resource",
-    title: "Cooling the cloud has a local cost.",
+    short: "Different Grids",
+    eyebrow: "Electricity systems are not equal",
+    title: "The same data center can produce very different energy outcomes.",
     intro:
-      "AI is often described in terms of electricity. Yet many facilities also depend on water to carry away heat, especially where evaporative cooling improves energy efficiency.",
+      "A facility connected to a renewable-rich grid has a different operational footprint from one connected to a system dominated by coal or natural gas.",
     body:
-      "Cooling design creates a tradeoff. A system can reduce electricity use by consuming more water, or conserve water while requiring more power. Climate and local scarcity change what responsible design looks like.",
+      "Countries experiencing data-center growth are following different electricity pathways. Some are expanding renewable generation rapidly. Others are meeting new demand with fossil fuels, imports, or delayed power-plant retirements. Renewable capacity alone is not enough; grid carbon intensity, transmission, storage, and firm generation also matter.",
     insight:
-      "A liter saved at the facility can shift demand back to the grid. Efficiency is a system, not a single number.",
-    visual: "water",
-    figures: [
-      {
-        title: "Water consumption",
-        caption:
-          "A comparison of water consumed by data-center facilities and regions.",
-      },
-      {
-        title: "Water usage effectiveness (WUE)",
-        caption:
-          "A comparison of water usage effectiveness across facilities and operating conditions.",
-      },
-      {
-        title: "Cooling types",
-        caption:
-          "A breakdown of cooling technologies and their water and energy tradeoffs.",
-      },
-    ],
-  },
-
-  // ------------------------------------------------------------------------
-  // CHAPTER 05 — CAN RENEWABLES KEEP UP?
-  // ------------------------------------------------------------------------
-  {
-    slug: "renewable-energy",
-    number: "05",
-    short: "Can Renewables Keep Up?",
-    eyebrow: "Renewable energy",
-    title: "Clean power is a race against new demand.",
-    intro:
-      "Technology companies are among the largest buyers of renewable electricity. Their contracts can finance new wind and solar projects, but annual procurement does not guarantee clean power every hour.",
-    body:
-      "The deeper comparison is temporal and geographic: does new generation appear on the same grid, at the same time, as data-center consumption? Storage, transmission, and firm clean power shape the answer.",
-    insight:
-      "The question is not simply how much renewable energy exists, but whether clean supply grows where demand grows.",
+      "Data centers do not determine sustainability by themselves. The surrounding electricity system does.",
     visual: "renewables",
     figures: [
       {
-        title: "Renewable generation vs. data-center concentration",
+        title: "Renewable share over time",
         caption:
-          "A comparison of renewable electricity generation and the geographic concentration of data centers.",
+          "Compare renewable-generation trajectories across major data-center countries.",
+        src: "/charts/renewable_share_selected_data_center_countries.png",
+        height: 700,
+        alt: "Line chart comparing renewable electricity shares across selected data-center countries.",
       },
       {
-        title: "Electricity generation by source",
+        title: "U.S. electricity generation by fuel",
         caption:
-          "A breakdown of electricity supplied by wind, solar, natural gas, and coal.",
+          "Show how coal declined while natural gas, wind, and solar expanded in the United States.",
+        src: "/charts/us_generation_mix_stacked_area.png",
+        height: 760,
+        alt: "Stacked area chart of United States electricity generation by fuel source.",
       },
       {
-        title: "Regional energy mix",
+        title: "Renewable share by U.S. state",
         caption:
-          "A regional view showing where wind, solar, natural gas, and coal shape the electricity mix.",
+          "Reveal how differently U.S. states are positioned to supply new large electricity loads.",
+        src: "/charts/state_renewable_heatmap.png",
+        height: 1200,
+        alt: "Heatmap showing renewable electricity generation share by United States state and year.",
+      },
+      {
+        title: "Clean versus fossil generation",
+        caption:
+          "Compare the national shares of electricity generated from clean and fossil sources.",
+        src: "/charts/clean_vs_fossil_share.png",
+        height: 700,
+        alt: "Chart comparing clean and fossil shares of electricity generation.",
+      },
+      {
+        title: "Generation in the top 10 data-center states",
+        caption:
+          "Compare total electricity generation across the United States states with the most data-center capacity.",
+        src: "/charts/top10_states_generation.png",
+        height: 700,
+        alt: "Chart comparing electricity generation in the top 10 United States data-center states.",
+      },
+      {
+        title: "Renewable share in the top 10 data-center states",
+        caption:
+          "Show the clean-energy readiness of the United States states hosting the most data-center capacity.",
+        src: "/charts/top10_states_renewable_share.png",
+        height: 700,
+        alt: "Chart comparing renewable electricity shares in the top 10 United States data-center states.",
       },
     ],
   },
-
-  // ------------------------------------------------------------------------
-  // CHAPTER 06 — WINNERS & TRADEOFFS
-  // ------------------------------------------------------------------------
+  {
+    slug: "renewable-energy",
+    number: "05",
+    short: "Can Clean Energy Keep Up?",
+    eyebrow: "Demand growth versus renewable growth",
+    title: "Clean power is racing against new demand.",
+    intro:
+      "Technology companies can help finance new wind, solar, storage, and other low-carbon resources. But renewable procurement does not automatically mean that clean electricity is available on the same grid or during every hour of operation.",
+    body:
+      "The critical comparison is whether renewable generation is growing alongside electricity demand in countries receiving new data-center investment. Some regions are adding substantial clean generation while demand rises. Others are experiencing rapid demand growth with only limited improvement in renewable share.",
+    insight:
+      "The central question is not how much renewable energy exists, but whether clean supply grows where electricity demand grows.",
+    visual: "renewables",
+    figures: [
+      {
+        title: "Demand growth versus renewable-share growth",
+        caption:
+          "Plot the change in electricity demand against the change in renewable share to identify transition leaders and high-risk markets.",
+        src: "/charts/demand_growth_vs_renewable_share_change.png",
+        height: 700,
+        alt: "Scatterplot comparing electricity-demand growth with growth in renewable-generation share.",
+      },
+      {
+        title: "Data-center capacity and renewable power",
+        caption:
+          "Compare data-center capacity with renewable electricity availability across countries.",
+        src: "/charts/data_center_capacity_vs_renewable_share.html",
+        height: 760,
+        alt: "Bubble chart comparing data-center capacity and renewable power capacity by country.",
+      },
+      {
+        title: "Demand growth versus renewable-share level",
+        caption:
+          "Compare electricity-demand growth with each country's current renewable share to identify prepared and exposed markets.",
+        src: "/charts/demand_growth_vs_renewable_share_level.png",
+        height: 700,
+        alt: "Scatterplot comparing electricity-demand growth with renewable-generation share.",
+      },
+    ],
+  },
   {
     slug: "winners-and-tradeoffs",
     number: "06",
-    short: "Winners & Tradeoffs",
-    eyebrow: "Winners and tradeoffs",
-    title: "Growth creates value and reallocates cost.",
+    short: "Readiness & Risk",
+    eyebrow: "Where growth creates opportunity or pressure",
+    title: "Some regions are ready for AI growth. Others face a widening energy gap.",
     intro:
-      "Data centers can bring tax revenue, construction, grid investment, and digital infrastructure. They can also compete for electricity, water, land, and public attention.",
+      "Data-center expansion can support investment, tax revenue, and new energy infrastructure. It can also increase fossil generation, grid congestion, electricity costs, and competition for limited resources.",
     body:
-      "The benefits and burdens rarely land in the same place or at the same time. Good policy makes these exchanges visible, measurable, and open to public scrutiny.",
+      "The strongest locations combine low-carbon electricity, expanding generation, available transmission, and policies that require large customers to contribute to the infrastructure they need. High-risk locations combine rapid data-center growth with fossil dependence, constrained grids, weak cost protections, or limited clean-energy expansion.",
     insight:
-      "Data centers are neither inherently sustainable nor unsustainable. Their impact depends on the systems built around them.",
+      "The real winners will be the regions that align computing growth with new low-carbon generation and grid investment.",
     visual: "tradeoffs",
     figures: [
       {
-        title: "Opportunity vs. risk quadrant",
+        title: "Water use and infrastructure tradeoffs",
         caption:
-          "Signature scatterplot where each point represents a country or state. Plot renewable electricity share (%) on the x-axis and data-center capacity (MW) or facility count on the y-axis. Scale each point by total electricity consumption and color it by water-stress tier.",
-      },
-      {
-        title: "Tradeoff bubble chart",
-        caption:
-          "Plot daily electricity usage on the x-axis and daily water usage on the y-axis. Size each bubble by facility capacity (MW) and color it by cooling system to reveal environmental tradeoffs among facilities.",
-      },
-      {
-        title: "Country opportunity score",
-        caption:
-          "Create a composite index weighted by renewable share (40%), water availability (25%), existing infrastructure (20%), and grid capacity (15%). Rank countries such as Norway, Canada, Sweden, Spain, the USA, and India in a horizontal bar chart for policy discussion.",
-      },
-      {
-        title: "Country profile radar charts",
-        caption:
-          "Select four countries and normalize renewables, water availability, data-center capacity, and electricity metrics from 0–100. Draw one polygon per country to make contrasting infrastructure profiles immediately visible.",
-      },
-      {
-        title: "Infrastructure flow Sankey",
-        caption:
-          "Show how infrastructure choices connect through a flow such as country → cooling type → electricity demand → water stress, or energy source → generation → data centers → cooling technology.",
-      },
-      {
-        title: "Country comparison heatmap",
-        caption:
-          "Use countries as rows and renewable share, water, electricity, capacity, PUE, and WUE as columns. Normalize the values and use color intensity to make strengths, constraints, and outliers easy to compare.",
-      },
-      {
-        title: "Country small multiples",
-        caption:
-          "Create a separate scatterplot for Spain, India, the USA, and Norway using identical axes, domains, and visual encodings. The repeated scale makes differences in distribution and country-level patterns easy to identify without relying on one crowded chart.",
-      },
-      {
-        title: "Four-quadrant efficiency plot",
-        caption:
-          "Plot electricity use on the x-axis and water use on the y-axis, with each point representing a facility or country. Divide the chart into Sustainable Leaders, Water Intensive, Energy Intensive, and Resource Intensive quadrants to directly communicate operational tradeoffs.",
-      },
-      {
-        title: "Before and after renewable mix",
-        caption:
-          "Use a stacked area chart from approximately 2015–2025 to show how coal, natural gas, solar, wind, and hydro changed over time. Overlay data-center growth to examine whether cleaner generation expanded alongside new infrastructure demand.",
-      },
-      {
-        title: "The infrastructure balance",
-        caption:
-          "Build a conceptual balance between benefits—renewable investment, economic growth, jobs, and AI innovation—and costs—water demand, grid congestion, peak load, and carbon emissions. Pair every item with an icon and one supporting statistic from the analysis.",
+          "Compare water demand across facilities and operating conditions as one of the local resource tradeoffs of data-center growth.",
+        src: "/charts/wateruse.png",
+        height: 700,
+        alt: "Chart comparing water use associated with data-center operations.",
       },
     ],
   },
-
-  // ------------------------------------------------------------------------
-  // CHAPTER 07 — LOOKING AHEAD
-  // ------------------------------------------------------------------------
   {
     slug: "looking-ahead",
     number: "07",
-    short: "Looking Ahead",
+    short: "Powering What Comes Next",
     eyebrow: "The future of AI infrastructure",
-    title: "The next model is also a planning decision.",
+    title: "The next breakthrough in AI may depend on the electric grid.",
     intro:
-      "AI capacity, electricity demand, renewable generation, water stress, and public planning are now moving together. Treating them as separate questions hides the choices ahead.",
+      "Future AI growth will require more than faster processors and larger models. It will require electricity systems capable of supplying large, continuous loads without slowing the transition away from fossil fuels.",
     body:
-      "Better disclosure and location-specific analysis can align infrastructure growth with grid capacity, water availability, and community priorities. The future is not predetermined; it is being permitted, financed, and built now.",
+      "Planning decisions made today will determine whether data centers become anchor customers for new clean energy or sources of additional grid pressure. Better disclosure, location-specific analysis, transmission investment, storage, and customer-funded infrastructure can help align AI expansion with long-term public goals.",
     insight:
-      "AI is often viewed as a software revolution. Our findings suggest it is equally an infrastructure revolution.",
+      "The future of AI is being permitted, financed, connected, and powered now.",
     visual: "future",
-    figures: [
-      {
-        title: "AI growth vs. grid readiness",
-        caption:
-          "Use two conceptual growth lines to compare AI compute demand with energy-infrastructure expansion. This is not a forecast; it frames the risk that compute demand may outpace generation, transmission, and cooling investment. Supporting message: Meeting future AI demand will require parallel investment in generation, transmission, and cooling technologies.",
-      },
-      {
-        title: "Resource intensity by cooling technology",
-        caption:
-          "Create a roadmap comparing air cooling (medium electricity efficiency, low water use, medium AI readiness), evaporative cooling (high efficiency, high water use, medium readiness), and liquid cooling (highest efficiency, low-to-medium water use depending on implementation, and highest AI readiness).",
-      },
-    ],
   },
 ];
 

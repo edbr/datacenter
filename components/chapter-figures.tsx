@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ImageIcon, Plus } from "lucide-react";
+import type { CSSProperties } from "react";
 import { ChapterFigure } from "@/lib/chapters";
 
 export function ChapterFigures({ figures }: { figures: ChapterFigure[] }) {
@@ -7,14 +8,30 @@ export function ChapterFigures({ figures }: { figures: ChapterFigure[] }) {
     <section className="chapter-figures" aria-label="Chapter figures">
       {figures.map((figure, index) => (
         <figure className={`figure-card figure-card-${index + 1}`} key={figure.title}>
-          <div className="figure-image">
+          <div
+            className="figure-image"
+            style={
+              {
+                "--figure-height": `${figure.height ?? 560}px`,
+              } as CSSProperties
+            }
+          >
             {figure.src ? (
-              <Image
-                src={figure.src}
-                alt={figure.alt ?? figure.title}
-                fill
-                sizes="(max-width: 760px) 100vw, 50vw"
-              />
+              figure.src.endsWith(".html") ? (
+                <iframe
+                  src={figure.src}
+                  title={figure.alt ?? figure.title}
+                  className="figure-embed"
+                  loading="lazy"
+                />
+              ) : (
+                <Image
+                  src={figure.src}
+                  alt={figure.alt ?? figure.title}
+                  fill
+                  sizes="(max-width: 760px) 100vw, 50vw"
+                />
+              )
             ) : (
               <div className="figure-placeholder">
                 <ImageIcon aria-hidden="true" />

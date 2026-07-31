@@ -435,7 +435,7 @@ a {
 .chapter-figures {
   padding: 32px 4vw 12vh;
   display: grid;
-  grid-template-columns: 1.5fr 1fr;
+  grid-template-columns: 1fr;
   align-items: center;
   gap: 24px;
   background: var(--ink);
@@ -448,21 +448,22 @@ a {
   padding: 30px;
   border: 1px solid var(--line);
 }
-.figure-card:first-child {
-  grid-row: span 2;
-}
 .figure-image {
   position: relative;
-  min-height: 260px;
+  height: var(--figure-height, 560px);
   border: 1px solid var(--line);
   overflow: hidden;
   background: #111210;
 }
-.figure-card:first-child .figure-image {
-  min-height: 560px;
-}
 .figure-image img {
-  object-fit: cover;
+  object-fit: contain;
+}
+.figure-embed {
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  border: 0;
+  background: #fff;
 }
 .figure-placeholder {
   position: absolute;
@@ -954,6 +955,7 @@ a {
   }
   .figure-card:first-child .figure-image,
   .figure-image {
+    height: min(var(--figure-height, 560px), 70vh);
     min-height: 330px;
   }
   .chapter-body {
